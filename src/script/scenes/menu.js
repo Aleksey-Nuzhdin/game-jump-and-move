@@ -1,0 +1,15 @@
+import {Scene} from '../scene'
+
+export class Menu extends Scene{
+  constructor(game){
+    super(game);
+    this.nextScene = "menu"
+  }
+  init() {
+    super.init();
+  }
+  render(time){
+    this.game.screen.drawImage(0,0, 'title')
+    super.render(time);
+  }
+}
