@@ -12,6 +12,8 @@ export class Game{
 			player: 'img/player.png',
       menuBG: 'img/menuBG.jpg',
 			//title: 'img/title.jpg',
+      oraPunch: 'img/ora_punch.png',
+      jojo: 'img/jojo.png',
 			tiles: 'img/tiles.png'            
         });
     this.scenes = {
@@ -22,6 +24,8 @@ export class Game{
     this.control = new ControlState()
     this.currentScene = this.scenes.loading
     this.currentScene.init()
+
+    
   }
   changeScene(status) {
     switch (status) {

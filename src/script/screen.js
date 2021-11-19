@@ -45,12 +45,12 @@ export class Screen{
       this.images[sprite.imageName],
       sprite.sourceX,
       sprite.sourceY,
-      sprite.width,
-      sprite.height,
+      sprite.sWidth,
+      sprite.sHeight,
       sprite.x,
       sprite.y,
-      sprite.width,
-      sprite.height
+      sprite.dWidth,
+      sprite.dHeight
     )
   }
 }

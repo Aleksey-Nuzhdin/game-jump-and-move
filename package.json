@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "webpack-dev-server",
+    "server": "webpack-dev-server --host 0.0.0.0",
     "build": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "nodemon": "nodemon ./dist/index.html localhost 8080"
   },
   "repository": {
     "type": "git",
