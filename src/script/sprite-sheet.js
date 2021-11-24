@@ -27,7 +27,6 @@ export class SpriteSheet {
   }
 
   getSprite(index = 1) {
-    console.log(this.imageName, );
     return new Sprite({
       imageName: this.imageName, 
       sourceX: this.getSourseX(index), 
