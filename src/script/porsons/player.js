@@ -16,15 +16,16 @@ export class Jojo extends PersonBody {
     })
 
     this.game = game
-    this.addAnimation( 'stay', this.tiles.getAnimation([1,2,3,4,5,6], 100) )
-    this.addAnimation( 'fight_hend', this.tiles.getAnimation([96,97,98,99,100], 100, false, false) )
-    this.addAnimation( 'fight_foot', this.tiles.getAnimation([106,107,108,109, 110, 111], 2) )
-    this.addAnimation( 'run_left', this.tiles.getAnimation([14,13,12,11,40,39,38,37], 100) )
-    this.addAnimation( 'run_right', this.tiles.getAnimation([7,8,9,10,21,22,23,24], 100) )
+    this.addAnimation( 'stay', this.getDirectionAnimate([1,2,3,4,5,6], 100) )
+    this.addAnimation( 'fight_hend', this.getDirectionAnimate([96,97,98,99,100], 100, false, false) )
+    this.addAnimation( 'fight_foot', this.getDirectionAnimate([106,107,108,109, 110, 111], 2) )
+    this.addAnimation( 'run', this.getDirectionAnimate([14,13,12,11,40,39,38,37], 100) )
     this.setAnimation('stay')
 
     this.isAnimated = false
     this.timerAnimation
+
+    this.direction = 0
   }
 
   selectionAnimation(){
@@ -39,14 +40,14 @@ export class Jojo extends PersonBody {
     }
     if(this.game.control.right){
       this.isAnimated = true
-      this.setAnimation('run_right')
+      this.setAnimation('run')
       this.body.run()
       this.endAnimation(5,99)
       return
     }
     if(this.game.control.left){
       this.isAnimated = true
-      this.setAnimation('run_left')
+      this.setAnimation('run')
       this.body.run()
       this.endAnimation(5,99)
       return
@@ -60,7 +61,20 @@ export class Jojo extends PersonBody {
 
   setDirection(){
     if(this.game.control.left){
+      this.direction = 10
     }
+    if(this.game.control.right){
+      this.direction = 0
+    }
+  }
+
+  getDirectionAnimate(arrSprite, speed, replay, autorun){
+    console.log(arrSprite);
+    let arr = arrSprite.map( el => {
+      return el + (this.direction ? this.direction : 0)
+    } )
+    console.log(arr);
+    return this.tiles.getAnimation(arr, speed, replay, autorun)
   }
 
   endAnimation(length, speed){
