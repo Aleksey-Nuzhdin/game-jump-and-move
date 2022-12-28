@@ -2,29 +2,36 @@ const path = require('path');
 
 module.exports = {
   mode: "development",
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/index.js'
   },
   devServer: {
-    overlay: true,
+    client:{
+      overlay: true,
+    },
     open: false,
-    contentBase: './dist'
+    static: [
+      {
+        directory: path.join(__dirname, 'dist'),
+      },
+    ],
+    host: '0.0.0.0',
+    port: 2020,
+    liveReload: true,
   },  
   devtool: 'inline-source-map',
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ]
   }
 };
